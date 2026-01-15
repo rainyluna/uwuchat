@@ -9,6 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.4.6",
+    "@tanstack/react-query": "^5.90.17",
+    "elysia": "^1.4.22",
+    "ioredis": "^5.9.1",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
