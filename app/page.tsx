@@ -3,11 +3,13 @@
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/client";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
   const [username, setUsername] = useState("");
   const [roomName, setRoomName] = useState("");
+  const router = useRouter()
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -20,6 +22,9 @@ export default function Home() {
     mutationFn: async () => {
       localStorage.setItem("username", username);
       const res = await api.rooms.create({ roomId: roomName }).post()
+      if (res.status === 200) {
+        router.push(`/room/${res.data?.roomID}`)
+      }
     }
   })
 
@@ -32,7 +37,7 @@ export default function Home() {
         <br />
         <p></p>
         <br />
-        <p className="text-xl text-center">Hi!! Welcome to an IRC-Like, realtime chat app</p>
+        <p className="text-xl text-center">Hi!! This is a basic realtime chat app</p>
         <br />
         <div className="flex flex-col items-center justify-center pt-10">
           <p className="text-xl text-center">Select a room: </p>
